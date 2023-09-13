@@ -3,6 +3,7 @@ High level control denotes the ability of performing a complex task, which is as
 - Finite State Machines (FSMs)
 - Behavior Trees (BTs)
 - Petri Nets
+
 This projects aims to modifiy an already implemented algorithm - called Wall Follower - by replacing the underline FSM structure with an equivalent BT.
 ## Wall Follower algorithm
 FSM explanation.
