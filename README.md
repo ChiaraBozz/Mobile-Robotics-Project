@@ -36,6 +36,26 @@ The ROS 2 package has been tested and simulated on `Ubuntu 20.04 LTS`. It does n
 ## 2. ROS 2
 The project requires ROS 2 Foxy Fitzroy (https://docs.ros.org/en/foxy/Releases/Release-Foxy-Fitzroy.html#foxy-fitzroy-foxy). The ROS 2 workspace is assumed to be called `colcon_ws`. The turtlebot3_HLC_BT package has to be loaded inside ~/colcon_ws/src/ directory.
 
+    colcon_ws
+    ├── build
+    ├── install
+    ├── log
+    └── src
+        └── *turtlebot3_HLC_BT*
+            ├── package.xml
+            ├── setup.cfg
+            ├── setup.py
+            ├── resource
+            |   ├── turtlebot3_HLC_BT
+            ├── test
+            │   ├── test_copyright.py
+            │   ├── test_flake8.py
+            │   └── test_pep257.py
+            ├── turtlebot3_HLC_BT
+            │   ├── __init__.py
+            │   └── HLC_BT.py
+            └── README.md
+
 ## 3. Simulation
 The ROS 2 package has been simulated by using Unity Hub 3.5.1 together with the 2020.3.22f1 editor version. The simulation environment has to be loaded from the following folder.
 ```bash
@@ -111,5 +131,5 @@ You can take a look at the structure of the Behaviour Tree by running:
 ```bash
 ros2 run turtlebot3_HLC_BT turtlebot3_HLC_BT --render
 ```
-In the folder you have launch the code you will found the .png file of the BT:
+In the folder you have launch the code you will found the .png file of the structure of the BT:
 ![](media/root.png)
