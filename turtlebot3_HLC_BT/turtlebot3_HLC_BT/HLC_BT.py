@@ -12,6 +12,7 @@ import py_trees
 import functools
 import sys
 from py_trees.common import Status
+import argparse
 
 class Turtlebot3HighLevelControl(Node):
     def __init__(self):
@@ -581,7 +582,11 @@ def post_tick_handler(snapshot_visitor, behaviour_tree):
     
 def main(args=None):
     rclpy.init(args=args)
-  
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--render", action="store_true", help="Render the behavior tree")
+    args = parser.parse_args(args)
+
     #py_trees.logging.level = py_trees.logging.Level.DEBUG
 
     my_robot = Turtlebot3HighLevelControl()
@@ -592,7 +597,7 @@ def main(args=None):
     ####################
     # Render the tree
     # py_trees.display.render_dot_tree(root)
-    render = False 
+    render = args.render 
     if render:
         py_trees.display.render_dot_tree(root)
         sys.exit()
