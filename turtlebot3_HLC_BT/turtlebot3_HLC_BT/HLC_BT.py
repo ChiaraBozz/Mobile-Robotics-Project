@@ -62,7 +62,7 @@ class Turtlebot3HighLevelControl(Node):
         self.msg = Twist()
 
         # distance threshold to the wall
-        self.min_distance = 0.30
+        self.min_distance = 0.15
         self.th = self.min_distance + 0.001 
 
         #timer_period = 0.1  # seconds
@@ -293,18 +293,45 @@ class Turtlebot3HighLevelControl(Node):
 
         return Status.SUCCESS
     
-    def safety_mode(self):
+    def safety_modeL(self):
         dist = self.regions['front']
         critical_distance = self.min_distance - 0.05 
         safety_velocity = 0.0
+
         if dist <= critical_distance:
-            
+
             print("\033[91m[Safety mode activation]")
+            
+            if(self.velocity[-1] == 0.0):
+                return Status.FAILURE
+            
             print("Velocity to be reproduced: ", self.velocity[-1])
             print("Actual velocity performed:", safety_velocity, "\033[0m")
             
             self.msg.linear.x = safety_velocity
-            self.msg.angular.z = -0.1
+            self.msg.angular.z = -0.05
+            return Status.SUCCESS
+        
+        else:
+            #safety_velocity = dist*dist
+            return Status.FAILURE
+    
+    def safety_modeR(self):
+        dist = self.regions['front']
+        critical_distance = self.min_distance - 0.05 
+        safety_velocity = 0.0
+        
+        if dist <= critical_distance:
+            print("\033[91m[Safety mode activation]")
+
+            if(self.velocity[-1] == 0.0):
+                return Status.FAILURE
+            
+            print("Velocity to be reproduced: ", self.velocity[-1])
+            print("Actual velocity performed:", safety_velocity, "\033[0m")
+            
+            self.msg.linear.x = safety_velocity
+            self.msg.angular.z = 0.05
             return Status.SUCCESS
         
         else:
@@ -385,7 +412,11 @@ class Root(py_trees.composites.Sequence):
     def selector_reverse(self):
         selector = py_trees.composites.Selector(name="Safe mode / Reverse")
         
-        selector.add_child(Safety_mode(self.robot))
+        if(self.robot.left):
+            selector.add_child(Safety_modeL(self.robot))
+        else:
+            selector.add_child(Safety_modeR(self.robot))
+        #selector.add_child(Safety_mode(self.robot))
         selector.add_child(Reverse_action(self.robot))
         
         return selector
@@ -560,13 +591,21 @@ class Reverse_action(py_trees.behaviour.Behaviour):
     def update(self):
         return self.robot.reverse_action()
 
-class Safety_mode(py_trees.behaviour.Behaviour):
+class Safety_modeL(py_trees.behaviour.Behaviour):
     def __init__(self, robot):
-        super().__init__(name="Safety mode")
+        super().__init__(name="Safety mode L")
         self.robot = robot
 
     def update(self):
-        return self.robot.safety_mode()
+        return self.robot.safety_modeL()
+    
+class Safety_modeR(py_trees.behaviour.Behaviour):
+    def __init__(self, robot):
+        super().__init__(name="Safety mode R")
+        self.robot = robot
+
+    def update(self):
+        return self.robot.safety_modeR()
 
 def post_tick_handler(snapshot_visitor, behaviour_tree):
     
