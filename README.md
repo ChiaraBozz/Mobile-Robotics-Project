@@ -41,7 +41,7 @@ The project requires ROS 2 Foxy Fitzroy (https://docs.ros.org/en/foxy/Releases/R
     ├── install
     ├── log
     └── src
-        └── **turtlebot3_HLC_BT**
+        └── turtlebot3_HLC_BT
 
 ## 3. Simulation
 The ROS 2 package has been simulated by using Unity Hub 3.5.1 together with the 2020.3.22f1 editor version. The simulation environment has to be loaded from the following folder.
