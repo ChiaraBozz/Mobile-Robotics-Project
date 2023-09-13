@@ -87,6 +87,7 @@ Open the Assets/Scenes/ folder which can be found in the "Project" tab.
 Drag the turtlebot3HighLevelControl.unity scene in the tab named "Hierarchy".
 ![](media/unity4.webm)
 video4
+
 Delete any other scene in the "Hierarchy" tab if present
 ![](media/unity5.png)
 
@@ -105,3 +106,8 @@ Once the command has been launched, it is possible to see the list of active top
 ros2 topic list
 ```
 To end the simulation the play button inside Unity has to be pressed (alternetively Ctrl+P) and type in the terminal window Ctrl+C keys. It follows a demostration video.
+
+## 8. Render the Behaviour Tree
+```bash
+ros2 run turtlebot3_HLC_BT turtlebot3_HLC_BT --render
+```
