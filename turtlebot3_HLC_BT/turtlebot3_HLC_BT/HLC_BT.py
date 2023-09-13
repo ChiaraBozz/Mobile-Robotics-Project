@@ -320,7 +320,7 @@ class Root(py_trees.composites.Sequence):
         self.add_child(Control_loop(self.robot))
         
     def root(self):
-        selector = py_trees.composites.Selector(name="Selector Root")
+        selector = py_trees.composites.Selector(name="Rewind / Wall follower")
 
         selector.add_child(self.selector_rewind1()) # Behaviour of Rewind
         selector.add_child(self.selector()) # Behaviour of Wall Follower
@@ -328,7 +328,7 @@ class Root(py_trees.composites.Sequence):
         return selector
 
     def sequence1(self):
-        sequence = py_trees.composites.Sequence(name="Sequence node 1")
+        sequence = py_trees.composites.Sequence(name="Find Wall")
         
         sequence.add_child(E1_find_wall_condition(self.robot))
         sequence.add_child(Find_wall_action(self.robot))
@@ -336,7 +336,7 @@ class Root(py_trees.composites.Sequence):
         return sequence
     
     def sequence2(self):
-        sequence = py_trees.composites.Sequence(name="Sequence node 2")
+        sequence = py_trees.composites.Sequence(name="Align")
         
         sequence.add_child(E2_align_left_condition(self.robot))
         if(self.robot.left):
@@ -347,7 +347,7 @@ class Root(py_trees.composites.Sequence):
         return sequence
     
     def sequence3(self):
-        sequence = py_trees.composites.Sequence(name="Sequence node 3")
+        sequence = py_trees.composites.Sequence(name="Follow Wall")
         
         sequence.add_child(E3_follow_wall_condition(self.robot))
         sequence.add_child(Follow_wall_action(self.robot))
@@ -355,7 +355,7 @@ class Root(py_trees.composites.Sequence):
         return sequence
 
     def selector(self):
-        sequence = py_trees.composites.Selector(name="Selector")
+        sequence = py_trees.composites.Selector(name="Selector wall follower behaviour")
         
         sequence.add_child(self.sequence1())
         sequence.add_child(self.sequence2())
@@ -364,7 +364,7 @@ class Root(py_trees.composites.Sequence):
         return sequence
 
     def sequence1_rewind(self):
-        sequence = py_trees.composites.Sequence(name="Sequence node rewind 1")
+        sequence = py_trees.composites.Sequence(name="Rotation action")
         
         sequence.add_child(Key_flag_cond(self.robot))
         sequence.add_child(Rotate_condition(self.robot))
@@ -373,7 +373,7 @@ class Root(py_trees.composites.Sequence):
         return sequence
     
     def sequence2_rewind(self):
-        sequence = py_trees.composites.Sequence(name="Sequence node rewind 2")
+        sequence = py_trees.composites.Sequence(name="Reverse action")
         
         sequence.add_child(Key_flag_cond(self.robot))
         sequence.add_child(Not_empty_condition(self.robot))
@@ -382,7 +382,7 @@ class Root(py_trees.composites.Sequence):
         return sequence
 
     def selector_reverse(self):
-        selector = py_trees.composites.Selector(name="Selector")
+        selector = py_trees.composites.Selector(name="Safe mode / Reverse")
         
         selector.add_child(Safety_mode(self.robot))
         selector.add_child(Reverse_action(self.robot))
@@ -390,7 +390,7 @@ class Root(py_trees.composites.Sequence):
         return selector
     
     def selector_rewind1(self):
-        sequence = py_trees.composites.Selector(name="Selector")
+        sequence = py_trees.composites.Selector(name="Rotation / Reverse")
         
         sequence.add_child(self.selector_rewind2())
         sequence.add_child(self.sequence2_rewind())
@@ -398,7 +398,7 @@ class Root(py_trees.composites.Sequence):
         return sequence
 
     def selector_rewind2(self):
-        sequence = py_trees.composites.Selector(name="Selector")
+        sequence = py_trees.composites.Selector(name="Rotation / Key press")
         
         sequence.add_child(self.sequence1_rewind())
         sequence.add_child(KeyPressCondition(self.robot, 'a', timeout=100.0))
