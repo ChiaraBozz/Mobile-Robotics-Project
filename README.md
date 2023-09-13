@@ -7,9 +7,9 @@ High level control denotes the ability of performing a complex task, which is as
 This projects aims to modifiy an already implemented algorithm - called Wall Follower - by replacing the underline FSM structure with an equivalent BT.
 ## Wall Follower algorithm
 FSM explanation.
-FSM representation.
+![](media/FSM.png)
 BT explanation.
-BT representation.
+![](media/BT.png)
 
 # ROS 2 Package Structure
 The ROS 2 package is structured as follows.
