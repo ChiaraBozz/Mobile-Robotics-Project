@@ -111,3 +111,5 @@ You can take a look at the structure of the Behaviour Tree by running:
 ```bash
 ros2 run turtlebot3_HLC_BT turtlebot3_HLC_BT --render
 ```
+In the folder you have launch the code you will found the .png file of the BT:
+![](media/root.png)
