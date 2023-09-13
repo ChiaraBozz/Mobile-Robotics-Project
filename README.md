@@ -92,7 +92,7 @@ Open the Assets/Scenes/ folder which can be found in the "Project" tab.
 
 ## 5. Load the scene 
 Drag the turtlebot3HighLevelControl.unity scene in the tab named "Hierarchy".
-![](media/unity4.webm.mov)
+![Watch the video](media/unity4.webm.mov)
 
 Delete any other scene in the "Hierarchy" tab if present.
 ![](media/unity5.png)
