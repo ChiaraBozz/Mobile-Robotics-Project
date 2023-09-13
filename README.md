@@ -92,11 +92,8 @@ Open the Assets/Scenes/ folder which can be found in the "Project" tab.
 
 ## 5. Load the scene 
 Drag the turtlebot3HighLevelControl.unity scene in the tab named "Hierarchy".
-![Watch the video](media/unity4.webm.mov)
 
-![](media/unity4.mp4)
-
-![](media/unity4.mov)
+https://github.com/ChiaraBozz/Mobile-Robotics-Project/assets/104632380/80b79c65-f5e2-4a4d-ad96-b4e863dc72a0
 
 Delete any other scene in the "Hierarchy" tab if present.
 ![](media/unity5.png)
