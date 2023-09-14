@@ -132,7 +132,7 @@ You can take a look at the structure of the Behaviour Tree by running:
 ```bash
 ros2 run turtlebot3_HLC_BT turtlebot3_HLC_BT --render
 ```
-Inside ~/colcon_ws folder it will be generated the .png file of the structure of the BT:
+Inside the folder you have run this command, you will locate the .png file of the structure of the BT:
 ![](media/root.png)
 
 ## 9. Video Demonstration
