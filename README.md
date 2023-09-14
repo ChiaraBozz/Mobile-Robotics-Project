@@ -136,6 +136,6 @@ Inside the folder you have run this command, you will locate the .png file of th
 ![](media/root.png)
 
 ## 9. Video Demonstration
+### Wall Follower - Align Right 
 
-https://github.com/ChiaraBozz/Mobile-Robotics-Project/assets/132995885/145e8837-93d6-4f75-8367-83f2b744fab9
 
