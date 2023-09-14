@@ -62,9 +62,8 @@ class Turtlebot3HighLevelControl(Node):
         self.msg = Twist()
 
         # distance threshold to the wall
-        self.min_distance = 0.15
-        self.th = self.min_distance + 0.001 
-
+        self.th = 0.30
+    
         #timer_period = 0.1  # seconds
         #self.timer = self.create_timer(timer_period, self.control_loop)
 
@@ -85,8 +84,6 @@ class Turtlebot3HighLevelControl(Node):
         self.velocity = []
 
         self.add_vel = True
-
-        self.time=0
 
         self.current_angle=0
         self.t0 = time.time()
@@ -191,7 +188,7 @@ class Turtlebot3HighLevelControl(Node):
         print("\033[32m[Find Wall]\033[0m")
         dist = self.ranges[0]
         self.angular_vel = 0.0
-        if dist <= self.min_distance:
+        if dist <= self.th:
             velocity = 0.0
         else:
             velocity = dist*dist
@@ -295,7 +292,7 @@ class Turtlebot3HighLevelControl(Node):
     
     def safety_modeL(self):
         dist = self.regions['front']
-        critical_distance = self.min_distance - 0.05 
+        critical_distance = self.th - 0.05 
         safety_velocity = 0.0
 
         if dist <= critical_distance:
@@ -318,7 +315,7 @@ class Turtlebot3HighLevelControl(Node):
     
     def safety_modeR(self):
         dist = self.regions['front']
-        critical_distance = self.min_distance - 0.05 
+        critical_distance = self.th - 0.05 
         safety_velocity = 0.0
         
         if dist <= critical_distance:
@@ -672,7 +669,7 @@ def main(args=None):
             root.tick_once()
             
             #print("\n")
-            #print("{}".format(py_trees.display.unicode_tree(root, show_status=True)))
+            print("{}".format(py_trees.display.unicode_tree(root, show_status=True)))
             
             elapsed_time = time.time() - start_time
             print("ELAPSED TIME", elapsed_time)
