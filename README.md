@@ -134,3 +134,8 @@ ros2 run turtlebot3_HLC_BT turtlebot3_HLC_BT --render
 ```
 Inside ~/colcon_ws folder it will be generated the .png file of the structure of the BT:
 ![](media/root.png)
+
+## 9. Video Demonstration
+
+https://github.com/ChiaraBozz/Mobile-Robotics-Project/assets/132995885/145e8837-93d6-4f75-8367-83f2b744fab9
+
