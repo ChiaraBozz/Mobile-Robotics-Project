@@ -43,6 +43,11 @@ The ROS 2 package has been tested and simulated on `Ubuntu 20.04 LTS`. It does n
 ## 2. ROS 2
 The project requires ROS 2 Foxy Fitzroy (https://docs.ros.org/en/foxy/Releases/Release-Foxy-Fitzroy.html#foxy-fitzroy-foxy). The ROS 2 workspace is assumed to be called `colcon_ws`. The turtlebot3_HLC_BT package has to be loaded inside ~/colcon_ws/src/ directory.
 
+```bash
+git clone https://github.com/ChiaraBozz/Mobile-Robotics-Project turtlebot3_HLC_BT/
+mv turtlebot3_HLC_BT/turtlebot3_HLC_BT/ ~/colcon_ws/src/
+```
+
     colcon_ws
     ├── build
     ├── install
