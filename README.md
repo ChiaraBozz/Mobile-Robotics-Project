@@ -16,7 +16,7 @@ The execution of the BT starts from the root to its leaves from left to right. A
 The `Control Loop` action node is responsible for saving both linear and angular velocities in their respective lists. As for the FSM such lists are necessary to perform the `Reverse Action` node. 
 
 Assuming that the user presses any keyboard button, the `KeyFlagCondition` node will return SUCCESS to its parent node `Rotate Action`. Since such node is a sequnce node, it will route the tick to the `RotateCondition` node, which returns SUCCESS to its parent node until the robot has not performed a rotation of 180 degrees around itself. Such action is handled by the `RotateAction` action node. Once that the robot has turned of 180 degrees, the `RotateAction` node will return SUCCESS to its parent node `Rotation`. At this point, the `ReverseAction` sequence node executes the rewind sub-task. Hence, the robot moves back to the path it has performed up to the time instant in which the keyboard button has been pressed (`Reverse` action node). Such sub-task gets executed until either the lists of saved velocities get empty (`NotEmptyCondition` node) or another keyboard button gets pressed by the user (`KeyFlagCondition` node).
-The `SafetyMode` action node is required for a real scenario in which - because of slidings or delays - the robot may not perform ideal turnings around its y axis or small differences in how time is simulated and how control commands are applied at each time step can lead to variations in the robot's path when rewinding. As consequence, the trajectory of its saved path may shift, leading the robot to collide against a wall. The `SafetyMode` action node avoids collisions against the wall, while the robot goes back to its original path.
+The `SafetyMode` action node is required for a real scenario in which - because of slidings or delays - the robot may not perform ideal turnings around its y axis. Furthermore, small differences in how time is simulated and how control commands are applied at each time step can lead to variations in the robot's path when rewinding. As consequence, the trajectory of its saved path may shift, leading the robot to collide against a wall. The `SafetyMode` action node avoids collisions against the wall, while the robot goes back to its original path.
 
 # ROS 2 Package Structure
 The ROS 2 package is structured as follows.
@@ -132,5 +132,5 @@ You can take a look at the structure of the Behaviour Tree by running:
 ```bash
 ros2 run turtlebot3_HLC_BT turtlebot3_HLC_BT --render
 ```
-In the folder you have launch the code you will found the .png file of the structure of the BT:
+Inside ~/colcon_ws folder it will be generated the .png file of the structure of the BT:
 ![](media/root.png)
